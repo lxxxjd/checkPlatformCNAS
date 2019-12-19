@@ -175,17 +175,23 @@ class CNASCheckFourCertCode extends PureComponent {
   columns = [
 
     {
-      title: 'CNAS一级分类',
+      title: '认可领域',
       dataIndex: 'domainName',
     },
     {
-      title: 'CNAS二级分类',
+      title: '认可子领域',
       dataIndex: 'subDomainName',
     },
     {
-      title: 'CNAS三级分类',
+      title: '检查领域',
       dataIndex: 'checkName',
     },
+
+    {
+      title: '说明',
+      dataIndex: 'explain',
+    },
+
 
     {
       title: '检查项目',
@@ -489,9 +495,9 @@ class CNASCheckFourCertCode extends PureComponent {
                 rules: [{  message: '搜索类型' }],
               })(
                 <Select placeholder="搜索类型">
-                  <Option value="domainName">一级分类</Option>
-                  <Option value="subDomainName">二级分类</Option>
-                  <Option value="checkName">三级分类</Option>
+                  <Option value="domainName">认可领域</Option>
+                  <Option value="subDomainName">认可子领域</Option>
+                  <Option value="checkName">检查领域</Option>
                   <Option value="checkProject">检查项目</Option>
                 </Select>
               )}

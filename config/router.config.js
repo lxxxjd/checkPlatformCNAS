@@ -49,43 +49,11 @@ export default [
         name: 'Cargo',
         routes: [
 
-
-
           {
-            path: '/Cargo/CargoInfo',
-            name: 'CargoInfo',
-            component: './Cargo/CargoInfo',
+            path: '/Cargo/CNASOne',
+            name: 'CNASOne',
+            component: './Cargo/CNASOne',
           },
-          {
-            path: '/Cargo/ItemList',
-            name: 'ItemList',
-            component: './Cargo/ItemList',
-            hideInMenu: 'true',//添加页不需要在menu上显示
-          },
-          {
-            path: '/Cargo/StandardList',
-            name: 'StandardList',
-            component: './Cargo/StandardList',
-            hideInMenu: 'true',//添加页不需要在menu上显示
-          },
-
-
-          {
-            path: '/Cargo/CargoSort1',
-            name: 'CargoSort1',
-            component: './Cargo/CargoSort1',
-          },
-
-          {
-            path: '/Cargo/CargoSort2',
-            name: 'CargoSort2',
-            component: './Cargo/CargoSort2',
-            hideInMenu: 'true',//添加页不需要在menu上显示
-          },
-
-
-
-
           {
             path: '/Cargo/CNASTwo',
             name: 'CNASTwo',
@@ -101,11 +69,6 @@ export default [
           },
 
 
-          {
-            path: '/Cargo/CNASOne',
-            name: 'CNASOne',
-            component: './Cargo/CNASOne',
-          },
 
           {
             path: '/Cargo/CNASFour',
@@ -124,11 +87,6 @@ export default [
         name: 'Company',
         routes: [
 
-          {
-            path: '/Company/PreCompany',
-            name: 'PreCompany',
-            component: './Company/PreCompany',
-          },
 
           {
             path: '/Company/Company',

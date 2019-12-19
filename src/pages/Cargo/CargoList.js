@@ -111,7 +111,7 @@ class CargoList extends PureComponent {
 
   columns = [
     {
-      title: '货物一级分类',
+      title: '货物认可领域',
       dataIndex: 'sort1',
     },
 

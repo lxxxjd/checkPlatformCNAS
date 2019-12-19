@@ -111,7 +111,7 @@ class CargoSort1 extends PureComponent {
 
   columns = [
     {
-      title: '货物二级分类',
+      title: '货物认可子领域',
       dataIndex: 'sort2',
     },
 

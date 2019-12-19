@@ -10,7 +10,7 @@ export default {
     updateCargoResult:{},
     deleteCargoResult:{},
 
-    // 货物二级分类
+    // 货物认可子领域
     getCargosort2ListResult:{},
     addCargosort2Result:{},
     updateCargosort2Result:{},
@@ -56,7 +56,7 @@ export default {
       if (callback) callback(response.data);
     },
 
-    // 货物二级分类
+    // 货物认可子领域
 
     *getCargosort2List({ payload,callback }, { call, put }) {
       const response = yield call(getCargosort2List, payload);
@@ -129,7 +129,7 @@ export default {
       };
     },
 
-    // 货物二级分类
+    // 货物认可子领域
     getCargosort2ListResult(state, { payload }) {
       return {
         ...state,

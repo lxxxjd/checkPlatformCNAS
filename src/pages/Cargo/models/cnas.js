@@ -55,7 +55,7 @@ export default {
       if (callback) callback(response.data);
     },
 
-    // 二级分类
+    // 认可子领域
     *getCNASLevelTwoList({ payload,callback }, { call, put }) {
       const response = yield call(getCNASLevelTwoList, payload);
       yield put({
@@ -94,7 +94,7 @@ export default {
       if (callback) callback(response.data);
     },
 
-    // 三级分类
+    // 检查领域
 
 
     *getCNASLevelThreeList({ payload,callback }, { call, put }) {
@@ -225,7 +225,7 @@ export default {
       };
     },
 
-    // 二级分类
+    // 认可子领域
 
     getCNASLevelTwoListResult(state, { payload }) {
       return {

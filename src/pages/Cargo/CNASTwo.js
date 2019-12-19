@@ -37,35 +37,35 @@ const CreateForm = Form.create()(props => {
   return (
     <Modal
       destroyOnClose
-      title="CNAS二级分类修改"
+      title="CNAS认可子领域修改"
       style={{ top: 100 }}
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => handleModalVisible()}
     >
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="二级编码">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="认可子领域编码">
         {form.getFieldDecorator('subDomainCode', {
           initialValue: modalInfo.subDomainCode,
           rules: [
             {
               required: true,
-              message: "请输入CNAS二级编码",
+              message: "请输入CNAS认可子领域编码",
             },
           ],
-        })(<Input placeholder="请输入CNAS二级编码" />)}
+        })(<Input placeholder="请输入CNAS认可子领域编码" />)}
       </FormItem>
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="二级分类">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="认可子领域">
         {form.getFieldDecorator('subDomainName', {
           initialValue: modalInfo.subDomainName,
           rules: [
             {
               required: true,
-              message: "请输入CNAS二级分类",
+              message: "请输入CNAS认可子领域",
             },
           ],
-        })(<Input placeholder="请输入CNAS二级分类" />)}
+        })(<Input placeholder="请输入CNAS认可子领域" />)}
       </FormItem>
 
 
@@ -87,33 +87,33 @@ const AddForm = Form.create()(props => {
   return (
     <Modal
       destroyOnClose
-      title="CNAS二级分类新增"
+      title="CNAS认可子领域新增"
       style={{ top: 100 }}
       visible={addModalVisible}
       onOk={okHandle}
       onCancel={() => addHandleModalVisible()}
     >
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="二级编码">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="认可子领域编码">
         {form.getFieldDecorator('subDomainCode', {
           rules: [
             {
               required: true,
-              message: "请输入CNAS二级编码",
+              message: "请输入CNAS认可子领域编码",
             },
           ],
-        })(<Input placeholder="请输入CNAS二级编码" />)}
+        })(<Input placeholder="请输入CNAS认可子领域编码" />)}
       </FormItem>
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="二级分类">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="认可子领域">
         {form.getFieldDecorator('subDomainName', {
           rules: [
             {
               required: true,
-              message: "请输入CNAS二级分类",
+              message: "请输入CNAS认可子领域",
             },
           ],
-        })(<Input placeholder="请输入CNAS二级分类" />)}
+        })(<Input placeholder="请输入CNAS认可子领域" />)}
       </FormItem>
 
     </Modal>
@@ -136,11 +136,11 @@ class CNASOne extends PureComponent {
 
   columns = [
     {
-      title: 'CNAS二级编码',
+      title: '认可子领域编码',
       dataIndex: 'subDomainCode',
     },
     {
-      title: 'CNAS二级分类',
+      title: '认可子领域',
       dataIndex: 'subDomainName',
     },
 
@@ -152,7 +152,7 @@ class CNASOne extends PureComponent {
           &nbsp;&nbsp;
           <a onClick={() => this.modifyItem(text, record)}>修改</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.goCNASThree(text, record)}>编辑三级分类</a>
+          <a onClick={() => this.goCNASThree(text, record)}>编辑检查领域</a>
         </Fragment>
       ),
     },

@@ -37,36 +37,49 @@ const CreateForm = Form.create()(props => {
   return (
     <Modal
       destroyOnClose
-      title="CNAS三级分类修改"
+      title="CNAS检查领域修改"
       style={{ top: 100 }}
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => handleModalVisible()}
     >
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="三级编码">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="检查领域编码">
         {form.getFieldDecorator('checkCode', {
           initialValue: modalInfo.checkCode,
           rules: [
             {
               required: true,
-              message: "请输入CNAS三级编码",
+              message: "请输入CNAS检查领域编码",
             },
           ],
-        })(<Input placeholder="请输入CNAS三级编码" />)}
+        })(<Input placeholder="请输入CNAS检查领域编码" />)}
       </FormItem>
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="三级分类">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="检查领域">
         {form.getFieldDecorator('checkName', {
           initialValue: modalInfo.checkName,
           rules: [
             {
               required: true,
-              message: "请输入CNAS三级分类",
+              message: "请输入CNAS检查领域",
             },
           ],
-        })(<Input placeholder="请输入CNAS三级分类" />)}
+        })(<Input placeholder="请输入CNAS检查领域" />)}
       </FormItem>
+
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="说明">
+        {form.getFieldDecorator('explain', {
+          initialValue: modalInfo.explain,
+          rules: [
+            {
+              required: true,
+              message: "请输入说明",
+            },
+          ],
+        })(<Input placeholder="请输入说明" />)}
+      </FormItem>
+
 
 
     </Modal>
@@ -87,33 +100,44 @@ const AddForm = Form.create()(props => {
   return (
     <Modal
       destroyOnClose
-      title="CNAS三级分类新增"
+      title="CNAS检查领域新增"
       style={{ top: 100 }}
       visible={addModalVisible}
       onOk={okHandle}
       onCancel={() => addHandleModalVisible()}
     >
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="三级编码">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="检查领域编码">
         {form.getFieldDecorator('checkCode', {
           rules: [
             {
               required: true,
-              message: "请输入CNAS三级编码",
+              message: "请输入CNAS检查领域编码",
             },
           ],
-        })(<Input placeholder="请输入CNAS三级编码" />)}
+        })(<Input placeholder="请输入CNAS检查领域编码" />)}
       </FormItem>
 
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="三级分类">
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="检查领域">
         {form.getFieldDecorator('checkName', {
           rules: [
             {
               required: true,
-              message: "请输入CNAS三级分类",
+              message: "请输入CNAS检查领域",
             },
           ],
-        })(<Input placeholder="请输入CNAS三级分类" />)}
+        })(<Input placeholder="请输入CNAS检查领域" />)}
+      </FormItem>
+
+      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="说明">
+        {form.getFieldDecorator('explain', {
+          rules: [
+            {
+              required: true,
+              message: "请输入说明",
+            },
+          ],
+        })(<Input placeholder="请输入说明" />)}
       </FormItem>
 
     </Modal>
@@ -136,12 +160,16 @@ class CNASThree extends PureComponent {
 
   columns = [
     {
-      title: 'CNAS三级编码',
+      title: '检查领域编码',
       dataIndex: 'checkCode',
     },
     {
-      title: 'CNAS三级分类',
+      title: '检查领域',
       dataIndex: 'checkName',
+    },
+    {
+      title: '说明',
+      dataIndex: 'explain',
     },
 
     {
@@ -197,7 +225,7 @@ class CNASThree extends PureComponent {
     const { form } = this.props;
     form.resetFields();
     this.init();
-  }
+  };
 
   handleSearch = e=> {
     e.preventDefault();
@@ -220,14 +248,14 @@ class CNASThree extends PureComponent {
         }
       });
     });
-  }
+  };
 
   isValidDate =date=> {
     if(date !==undefined && date !==null ){
       return <span>{moment(date).format('YYYY-MM-DD')}</span>;
     }
     return [];
-  }
+  };
 
   modifyItem = text => {
     this.setState({
@@ -254,7 +282,7 @@ class CNASThree extends PureComponent {
       }
     });
 
-  }
+  };
 
 
   addItem = () => {
@@ -281,6 +309,7 @@ class CNASThree extends PureComponent {
     let prams = modalInfo;
     prams.checkCode =  fields.checkCode;
     prams.checkName =  fields.checkName;
+    prams.explain =  fields.explain;
     const values = {
       ...prams,
     };
@@ -299,7 +328,7 @@ class CNASThree extends PureComponent {
     this.setState({
       modalVisible: false,
     });
-  }
+  };
 
   handleAdd = (fields) => {
     const { dispatch } = this.props;
@@ -323,7 +352,7 @@ class CNASThree extends PureComponent {
     this.setState({
       addModalVisible: false,
     });
-  }
+  };
 
 
 
