@@ -28,6 +28,9 @@ export default {
   'menu.Cargo.ItemList':'条目',
   'menu.Cargo.StandardList':'标准条目',
 
+  'menu.MainReport':'监督审查',
+  'menu.MainReport.MainQuery':'审查主页',
+
 
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',

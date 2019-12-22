@@ -83,7 +83,7 @@ export default [
 
       {
         path: '/Company',
-        icon: 'file',
+        icon: 'profile',
         name: 'Company',
         routes: [
 
@@ -99,6 +99,22 @@ export default [
             name: 'CNASCheckFourCertCode',
             component: './Company/CNASCheckFourCertCode',
             hideInMenu: 'true',//添加页不需要在menu上显示
+          },
+        ],
+      },
+
+
+      {
+        path: '/MainReport',
+        icon: 'profile',
+        name: 'MainReport',
+        routes: [
+
+
+          {
+            path: '/MainReport/MainQuery',
+            name: 'MainQuery',
+            component: './MainReport/MainQuery',
           },
         ],
       },
