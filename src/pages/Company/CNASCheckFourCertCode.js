@@ -164,7 +164,6 @@ class CNASCheckFourCertCode extends PureComponent {
     modalInfo :{},
     dataSource:[],
     cnsOptions:[],
-
     checkProjectOptions:[], // 用于修改的所有的选项
     checkProjectExist:[], // 用于修改的已经存在的选项
     checkCode:[],        // 用于修改的检查条目数组
