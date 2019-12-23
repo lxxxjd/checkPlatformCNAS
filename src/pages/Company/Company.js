@@ -269,6 +269,8 @@ class Company extends PureComponent {
         <Fragment>
           <a onClick={() => this.setCNAS(text, record)}>编辑CNAS检查项目</a>
           &nbsp;&nbsp;
+          <a onClick={() => this.previewItem(text, record)}>查看</a>
+          &nbsp;&nbsp;
           <a onClick={() => this.modifyItem(text, record)}>修改</a>
           &nbsp;&nbsp;
           <a onClick={() => this.deleteItem(text, record)}>删除</a>
@@ -302,13 +304,13 @@ class Company extends PureComponent {
         }
       }
     });
-  }
+  };
 
   handleFormReset = () => {
     const { form } = this.props;
     form.resetFields();
     this.init();
-  }
+  };
 
   handleSearch = e=> {
     e.preventDefault();
@@ -329,14 +331,14 @@ class Company extends PureComponent {
         }
       });
     });
-  }
+  };
 
   isValidDate =date=> {
     if(date !==undefined && date !==null ){
       return <span>{moment(date).format('YYYY-MM-DD')}</span>;
     }
     return [];
-  }
+  };
 
   modifyItem = text => {
     this.setState({
@@ -345,7 +347,12 @@ class Company extends PureComponent {
     this.handleModalVisible(true);
   };
 
-
+  previewItem = text => {
+    sessionStorage.setItem('certcode',text.certcode);
+    router.push({
+      pathname:'/Company/CompanyDetail',
+    });
+  };
 
 
   deleteItem = text =>{

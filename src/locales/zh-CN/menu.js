@@ -23,6 +23,7 @@ export default {
   'menu.Company':'机构授权',
   'menu.Company.PreCompany':'公司审核',
   'menu.Company.Company':'检验公司',
+  'menu.Company.CompanyDetail':'检验公司详情',
   'menu.Company.CNASCheckFourCertCode':'编辑CNAS检验项目',
   // CNASCheckFourCertCode
   'menu.Cargo.ItemList':'条目',

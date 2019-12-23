@@ -90,8 +90,24 @@ class MainQuery extends PureComponent {
     modalReviewVisible:false,
     modalInfo :{},
     mainResult:[],
+    man:[],
+    peopleVisible:false,
   };
+  columns1 = [
+    {
+      title: '检验人员',
+      dataIndex: 'inspman',
+    },
 
+    {
+      title: '联系方式',
+      dataIndex: 'tel',
+    },
+    {
+      title: '任务',
+      dataIndex: 'inspway',
+    },
+  ];
   columns = [
     {
       title: '委托编号',
@@ -145,7 +161,7 @@ class MainQuery extends PureComponent {
         <Fragment>
           <a onClick={() => this.previewItem(text, record)}>能力分析</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.previewItem(text, record)}>人员详情</a>
+          <a onClick={() => this.peopleItem(text, record)}>人员详情</a>
           &nbsp;&nbsp;
           <a onClick={() => this.previewItem(text, record)}>仪器设备</a>
           &nbsp;&nbsp;
@@ -199,7 +215,22 @@ class MainQuery extends PureComponent {
 
   };
 
-
+  peopleItem = text =>{
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'main/getAllMan',
+      payload: {
+        reportno:text.reportno,
+        certcode:text.certcode,
+      },
+      callback:response =>{
+        if (response.code === 200) {
+          this.setState({man:response.data});
+        }
+      }
+    });
+    this.setState({peopleVisible:true});
+  };
 
 
 
@@ -400,8 +431,9 @@ class MainQuery extends PureComponent {
   };
 
 
-
-
+  handleCancel = () =>{
+    this.setState({peopleVisible:false});
+  };
 
   render() {
     const {
@@ -412,7 +444,7 @@ class MainQuery extends PureComponent {
     const { getFieldDecorator, getFieldValue } = this.props.form;
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
-    const { modalReviewVisible,modalInfo ,mainResult} = this.state;
+    const { modalReviewVisible,modalInfo ,mainResult, man, peopleVisible} = this.state;
     const parentMethods = {
       handleModalReviewVisible:this.handleModalReviewVisible,
     };
@@ -505,6 +537,21 @@ class MainQuery extends PureComponent {
             />
           </div>
         </Card>
+        <Modal
+          title="人员"
+          visible={peopleVisible}
+          onOk={this.handleCancel}
+          onCancel={this.handleCancel}
+        >
+          <Table
+              size="middle"
+              loading={loading}
+              rowKey='inspman'
+              dataSource={man}
+              columns={this.columns1}
+              pagination={{showQuickJumper:true,showSizeChanger:true}}
+            />
+        </Modal>
       </PageHeaderWrapper>
     );
   }

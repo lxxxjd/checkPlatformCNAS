@@ -194,4 +194,9 @@ export async function handleCNASCheckFourCertCode(params) {
 }
 
 
+export async function getAllCNASCheckDetail(params) {
+  return request(`/api/CNASCheckDetail/getAllCNASCheckDetail?certcode=${params.certcode}`);
+}
+
+
 

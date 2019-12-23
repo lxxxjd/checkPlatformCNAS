@@ -100,6 +100,12 @@ export default [
             component: './Company/CNASCheckFourCertCode',
             hideInMenu: 'true',//添加页不需要在menu上显示
           },
+          {
+            path: '/Company/CompanyDetail',
+            name: 'CompanyDetail',
+            component: './Company/CompanyDetail',
+            hideInMenu: 'true',//添加页不需要在menu上显示
+          },
         ],
       },
 
