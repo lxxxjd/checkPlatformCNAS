@@ -185,7 +185,7 @@ class MainQuery extends PureComponent {
   previewItem = text => {
     sessionStorage.setItem('reportno',text.reportno);
     router.push({
-      pathname:'/MainReport/DetailForEntrustment',
+      pathname:'/MainReport/DetailForEnturstment',
     });
   };
 

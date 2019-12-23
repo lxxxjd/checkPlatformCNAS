@@ -5,6 +5,8 @@ import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import styles from './MainQuery.less';
 import moment from 'moment'
 const { Title} = Typography;
+
+
 @connect(({ main, loading }) => ({
   main,
   loading: loading.models.main,
