@@ -90,24 +90,7 @@ class MainQuery extends PureComponent {
     modalReviewVisible:false,
     modalInfo :{},
     mainResult:[],
-    man:[],
-    peopleVisible:false,
   };
-  columns1 = [
-    {
-      title: '检验人员',
-      dataIndex: 'inspman',
-    },
-
-    {
-      title: '联系方式',
-      dataIndex: 'tel',
-    },
-    {
-      title: '任务',
-      dataIndex: 'inspway',
-    },
-  ];
   columns = [
     {
       title: '委托编号',
@@ -163,16 +146,16 @@ class MainQuery extends PureComponent {
           &nbsp;&nbsp;
           <a onClick={() => this.peopleItem(text, record)}>人员详情</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.previewItem(text, record)}>仪器设备</a>
+          <a onClick={() => this.instrumentItem(text, record)}>仪器设备</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.previewItem(text, record)}>检查记录</a>
+          <a onClick={() => this.recordItem(text, record)}>检查记录</a>
           &nbsp;&nbsp;
           <br />
-          <a onClick={() => this.previewItem(text, record)}>样品清单</a>
+          <a onClick={() => this.sampleItem(text, record)}>样品清单</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.previewItem(text, record)}>测试报告</a>
+          <a onClick={() => this.testRecordItem(text, record)}>测试报告</a>
           &nbsp;&nbsp;
-          <a onClick={() => this.previewItem(text, record)}>证稿证书</a>
+          <a onClick={() => this.certItem(text, record)}>证稿证书</a>
           &nbsp;&nbsp;
           <a onClick={() => this.previewItem(text, record)}>委托详情</a>
         </Fragment>
@@ -200,12 +183,47 @@ class MainQuery extends PureComponent {
   };
 
   previewItem = text => {
+    sessionStorage.setItem('reportno',text.reportno);
     router.push({
-      pathname:'/Entrustment/DetailForEntrustment',
+      pathname:'/MainReport/DetailForEntrustment',
     });
-    localStorage.setItem('reportDetailNo',text.reportno);
   };
 
+  testRecordItem = text =>{
+    sessionStorage.setItem('reportno',text.reportno);
+    router.push({
+      pathname:'/MainReport/TestRecord',
+    });
+  };
+
+  certItem = text =>{
+    sessionStorage.setItem('reportno',text.reportno);
+    router.push({
+      pathname:'/MainReport/CertFile',
+    });
+  };
+
+  sampleItem = text =>{
+    sessionStorage.setItem('reportno',text.reportno);
+    router.push({
+      pathname:'/MainReport/Sample',
+    });
+  };
+
+  recordItem = text =>{
+    sessionStorage.setItem('reportno',text.reportno);
+    router.push({
+      pathname:'/MainReport/Record',
+    });
+  };
+
+  instrumentItem = text =>{
+    sessionStorage.setItem('reportno',text.reportno);
+    sessionStorage.setItem('certcode',text.certcode);
+    router.push({
+      pathname:'/MainReport/Instrument',
+    });
+  };
 
   handleFormReset = () => {
     const { form } = this.props;
@@ -216,20 +234,11 @@ class MainQuery extends PureComponent {
   };
 
   peopleItem = text =>{
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'main/getAllMan',
-      payload: {
-        reportno:text.reportno,
-        certcode:text.certcode,
-      },
-      callback:response =>{
-        if (response.code === 200) {
-          this.setState({man:response.data});
-        }
-      }
+    sessionStorage.setItem('reportno',text.reportno);
+    sessionStorage.setItem('certcode',text.certcode);
+    router.push({
+      pathname:'/MainReport/PeopleDetail',
     });
-    this.setState({peopleVisible:true});
   };
 
 
@@ -431,10 +440,6 @@ class MainQuery extends PureComponent {
   };
 
 
-  handleCancel = () =>{
-    this.setState({peopleVisible:false});
-  };
-
   render() {
     const {
       loading,
@@ -444,7 +449,7 @@ class MainQuery extends PureComponent {
     const { getFieldDecorator, getFieldValue } = this.props.form;
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
-    const { modalReviewVisible,modalInfo ,mainResult, man, peopleVisible} = this.state;
+    const { modalReviewVisible,modalInfo ,mainResult, } = this.state;
     const parentMethods = {
       handleModalReviewVisible:this.handleModalReviewVisible,
     };
@@ -537,21 +542,6 @@ class MainQuery extends PureComponent {
             />
           </div>
         </Card>
-        <Modal
-          title="人员"
-          visible={peopleVisible}
-          onOk={this.handleCancel}
-          onCancel={this.handleCancel}
-        >
-          <Table
-              size="middle"
-              loading={loading}
-              rowKey='inspman'
-              dataSource={man}
-              columns={this.columns1}
-              pagination={{showQuickJumper:true,showSizeChanger:true}}
-            />
-        </Modal>
       </PageHeaderWrapper>
     );
   }

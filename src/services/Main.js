@@ -32,3 +32,31 @@ export async function getReportByCustoms(params) {
     },
   });
 }
+
+export async function getUserByCertCodeAndName(params) {
+  return request(`/api/user/getUserByCertCodeAndName?certCode=${params.certcode}&nameC=${params.nameC}`);
+}
+
+export async function getInstrumentByReportno(params) {
+  return request(`/api/checkResult/getInstrumentByReportno?certcode=${params.certcode}&reportno=${params.reportno}`);
+}
+
+export async function getInstrumentByKeyno(params) {
+  return request(`/api/instrument/getInstrumentByKeyno?keyno=${params.keyno}`);
+}
+
+export async function selectSampleByReportno(params) {
+  return request(`/api/sampleRegister/selectSampleByReportno?reportno=${params.reportno}`);
+}
+
+export async function getCertFiles(params) {
+  return request(`/api/cert_report//getCertFiles?reportno=${params.reportno}`);
+}
+
+export async function getOssPdf(params) {
+  return request(`/api/cert_report/get_pdf?osspath=${params.osspath}`);
+}
+
+export async function getCnasInfo(params) {
+  return request(`/api/cnas/getCnasInfo?checkCode=${params.checkCode}`);
+}

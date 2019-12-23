@@ -31,7 +31,13 @@ export default {
 
   'menu.MainReport':'监督审查',
   'menu.MainReport.MainQuery':'审查主页',
-
+  'menu.MainReport.PeopleDetail':'人员详情',
+  'menu.MainReport.Instrument':'仪器设备',
+  'menu.MainReport.Record':'检查记录',
+  'menu.MainReport.Sample':'样品清单',
+  'menu.MainReport.TestRecord':'测试报告',
+  'menu.MainReport.CertFile':'证稿证书',
+  'menu.MainReport.DetailForEnturstment':'委托详情',
 
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',

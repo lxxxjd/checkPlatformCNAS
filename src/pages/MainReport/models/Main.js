@@ -1,4 +1,6 @@
-import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport, getRecord} from '@/services/Main';
+import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport, 
+  getRecord, getUserByCertCodeAndName, getInstrumentByReportno, getInstrumentByKeyno,
+  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo} from '@/services/Main';
 
 
 export default {
@@ -21,12 +23,40 @@ export default {
       const response = yield call(getAllMan, payload);
       if (callback) callback(response);
     },
+    *getOssPdf({ payload,callback }, { call, put }) {
+      const response = yield call(getOssPdf, payload);
+      if (callback) callback(response);
+    },
     *getAllReadRecords({ payload,callback }, { call, put }) {
       const response = yield call(getAllReadRecords, payload);
       yield put({
         type: 'getReadRecords',
         payload: response,
       });
+      if (callback) callback(response);
+    },
+    *getCnasInfo({ payload ,callback}, { call, put }) {
+      const response = yield call(getCnasInfo, payload);
+      if (callback) callback(response);
+    },
+    *getUserByCertCodeAndName({ payload,callback }, { call, put }) {
+      const response = yield call(getUserByCertCodeAndName, payload);
+      if (callback) callback(response);
+    },
+    *getCertFiles({ payload,callback }, { call, put }) {
+      const response = yield call(getCertFiles, payload);
+      if (callback) callback(response);
+    },
+    *getInstrumentByKeyno({ payload,callback }, { call, put }) {
+      const response = yield call(getInstrumentByKeyno, payload);
+      if (callback) callback(response);
+    },
+    *selectSampleByReportno({ payload,callback }, { call, put }) {
+      const response = yield call(selectSampleByReportno, payload);
+      if (callback) callback(response);
+    },
+    *getInstrumentByReportno({ payload,callback }, { call, put }) {
+      const response = yield call(getInstrumentByReportno, payload);
       if (callback) callback(response);
     },
     *getRecordInfo({ payload,callback }, { call, put }) {
