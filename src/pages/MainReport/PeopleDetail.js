@@ -36,7 +36,8 @@ class PeopleDetail extends PureComponent {
   state = {
     man:[],
     peopleVisible:false,
-    manDetail:{}
+    manDetail:{},
+    record:[],
   };
 
   columns = [
@@ -64,6 +65,56 @@ class PeopleDetail extends PureComponent {
     },
   ];
 
+  columns1 = [
+    {
+      title: '证书名称',
+      dataIndex: 'recordname',
+    },
+    {
+      title: '上传日期',
+      dataIndex: 'createtime',
+      render: val => <span>{
+        moment(val).format('YYYY-MM-DD')
+      }</span>
+    },
+    {
+      title: '上传人',
+      dataIndex: 'username',
+    },
+    {
+      title: '操作',
+      render: (text, record) => (
+        // 能力分析 人员 仪器设备 检查记录 样品清单 测试报告 证稿证书 委托详情
+        <Fragment>
+          <a onClick={() => this.previewRecordItem(text, record)}>查看</a>
+        </Fragment>
+      ),
+    },
+  ];
+
+
+  previewRecordItem = text => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'main/getOssPdf',
+      payload:{
+        osspath:text.osspath
+      },
+      callback:(response) =>{
+        if(response.code === 400){
+          notification.open({
+            message: '打开失败',
+            description:response.data,
+          });
+        }else{
+          // const url = response.data;
+          // this.setState({url:url});
+          window.open(url);
+        }
+      }
+    });
+    this.setState({visible:true});
+  };
   componentDidMount() {
     const reportno = sessionStorage.getItem('reportno');
     const certcode = sessionStorage.getItem('certcode');
@@ -93,6 +144,23 @@ class PeopleDetail extends PureComponent {
       callback:response =>{
         if (response.code === 200) {
           this.setState({manDetail:response.data});
+        }else{
+          notification.open({
+            message: '查看失败',
+            description:response.data,
+          });
+        }
+      }
+    });
+    dispatch({
+      type: 'main/getManRecord',
+      payload: {
+        certcode : certcode ,
+        nameC : text.inspman,
+      },
+      callback:response =>{
+        if (response.code === 200) {
+          this.setState({record:response.data});
           this.setState({peopleVisible:true});
         }else{
           notification.open({
@@ -116,7 +184,7 @@ class PeopleDetail extends PureComponent {
       loading,
       dispatch,
     } = this.props;
-    const { man ,manDetail, peopleVisible} = this.state;
+    const { man ,manDetail, peopleVisible,record} = this.state;
     return (
       <PageHeaderWrapper>
         <Card bordered={false} size="middle">
@@ -138,7 +206,7 @@ class PeopleDetail extends PureComponent {
               loading={loading}
               dataSource={man}
               columns={this.columns}
-              rowKey="keyno"
+              rowKey="inspman"
               pagination={{showQuickJumper:true,showSizeChanger:true}}
             />
           </div>
@@ -167,6 +235,14 @@ class PeopleDetail extends PureComponent {
             <Descriptions.Item label="是否授权签字人">{manDetail.reportno20}</Descriptions.Item>
             <Descriptions.Item label="系统角色">{manDetail.businesssort}</Descriptions.Item>
           </Descriptions>
+            <Table
+              size="middle"
+              loading={loading}
+              dataSource={record}
+              columns={this.columns1}
+              rowKey="keyno"
+              pagination={{showQuickJumper:true,showSizeChanger:true}}
+            />
         </Modal>
       </PageHeaderWrapper>
     );

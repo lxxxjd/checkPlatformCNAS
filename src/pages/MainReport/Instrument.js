@@ -36,7 +36,8 @@ class Instrument extends PureComponent {
   state = {
     instruments:[],
     peopleVisible:false,
-    instrument:{}
+    instrument:{},
+    record:[]
   };
 
   columns = [
@@ -104,6 +105,33 @@ class Instrument extends PureComponent {
     },
   ];
 
+  columns1 = [
+    {
+      title: '证书名称',
+      dataIndex: 'recordname',
+    },
+    {
+      title: '上传日期',
+      dataIndex: 'createtime',
+      render: val => <span>{
+        moment(val).format('YYYY-MM-DD')
+      }</span>
+    },
+    {
+      title: '上传人',
+      dataIndex: 'username',
+    },
+    {
+      title: '操作',
+      render: (text, record) => (
+        // 能力分析 人员 仪器设备 检查记录 样品清单 测试报告 证稿证书 委托详情
+        <Fragment>
+          <a onClick={() => this.previewRecordItem(text, record)}>查看</a>
+        </Fragment>
+      ),
+    },
+  ];
+
   componentDidMount() {
     const reportno = sessionStorage.getItem('reportno');
     const certcode = sessionStorage.getItem('certcode');
@@ -121,8 +149,33 @@ class Instrument extends PureComponent {
       }
     });
   }
+
+  previewRecordItem = text => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'main/getOssPdf',
+      payload:{
+        osspath:text.osspath
+      },
+      callback:(response) =>{
+        if(response.code === 400){
+          notification.open({
+            message: '打开失败',
+            description:response.data,
+          });
+        }else{
+          // const url = response.data;
+          // this.setState({url:url});
+          window.open(url);
+        }
+      }
+    });
+    this.setState({visible:true});
+  };
+
   previewItem = text =>{
     const { dispatch } = this.props;
+    const certcode = sessionStorage.getItem('certcode');
     dispatch({
       type: 'main/getInstrumentByKeyno',
       payload: {
@@ -131,6 +184,23 @@ class Instrument extends PureComponent {
       callback:response =>{
         if (response.code === 200) {
           this.setState({instrument:response.data});
+        }else{
+          notification.open({
+            message: '查看失败',
+            description:response.data,
+          });
+        }
+      }
+    });
+    dispatch({
+      type: 'main/getInstrumentRecord',
+      payload: {
+        certcode : certcode ,
+        diviceName : text.divicename,
+      },
+      callback:response =>{
+        if (response.code === 200) {
+          this.setState({record:response.data});
           this.setState({peopleVisible:true});
         }else{
           notification.open({
@@ -154,7 +224,7 @@ class Instrument extends PureComponent {
       loading,
       dispatch,
     } = this.props;
-    const { instruments ,instrument, peopleVisible} = this.state;
+    const { instruments ,instrument, peopleVisible, record} = this.state;
     return (
       <PageHeaderWrapper>
         <Card bordered={false} size="middle">
@@ -205,6 +275,14 @@ class Instrument extends PureComponent {
             <Descriptions.Item label="检定单位">{instrument.checkCompany}</Descriptions.Item>
             <Descriptions.Item label="状态">{instrument.status}</Descriptions.Item>
           </Descriptions>
+          <Table
+              size="middle"
+              loading={loading}
+              dataSource={record}
+              columns={this.columns1}
+              rowKey="keyno"
+              pagination={{showQuickJumper:true,showSizeChanger:true}}
+            />
         </Modal>
       </PageHeaderWrapper>
     );

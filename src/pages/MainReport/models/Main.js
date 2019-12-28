@@ -1,6 +1,6 @@
 import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport, 
   getRecord, getUserByCertCodeAndName, getInstrumentByReportno, getInstrumentByKeyno,
-  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo} from '@/services/Main';
+  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo, getManRecord, getInstrumentRecord} from '@/services/Main';
 
 
 export default {
@@ -23,6 +23,15 @@ export default {
       const response = yield call(getAllMan, payload);
       if (callback) callback(response);
     },
+    *getManRecord({ payload,callback }, { call, put }) {
+      const response = yield call(getManRecord, payload);
+      if (callback) callback(response);
+    },
+    *getInstrumentRecord({ payload,callback }, { call, put }) {
+      const response = yield call(getInstrumentRecord, payload);
+      if (callback) callback(response);
+    },
+
     *getOssPdf({ payload,callback }, { call, put }) {
       const response = yield call(getOssPdf, payload);
       if (callback) callback(response);
