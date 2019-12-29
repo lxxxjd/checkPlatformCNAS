@@ -77,6 +77,26 @@ class CompanyDetail extends PureComponent {
     {
       title: '检验标准',
       dataIndex: 'standard',
+      render: (text, record) => {
+        if(typeof(text) === undefined || text === null){
+          return;
+        }
+        let  contentStr = [];
+        contentStr = text.split("|");
+        if (contentStr.length < 2) {
+          return text;
+        }
+        let result = null;
+        const br = <br></br>;
+        for( let  j = 0 ; j < contentStr.length ; j ++){
+          if(j===0){
+             result=contentStr[j];
+          }else{
+            result=<span>{result}{br}{contentStr[j]}</span>;
+          }
+        }
+        return <div>{result}</div>;
+      },
     },
     {
       title: '检验员名单',
