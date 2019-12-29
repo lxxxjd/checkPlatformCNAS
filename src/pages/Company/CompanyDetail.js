@@ -108,7 +108,7 @@ class CompanyDetail extends PureComponent {
     },
   ];
 
-  componentDidMount() {    
+  componentDidMount() {
     const { dispatch } = this.props;
     const certcode = sessionStorage.getItem('certcode');
     dispatch({
@@ -135,7 +135,7 @@ class CompanyDetail extends PureComponent {
         <Card bordered={false} size="middle">
           <Row gutter={16}>
             <Col span={3}>
-              <Title level={3}>检验公司详情</Title>
+              <Title level={3}>公司能力</Title>
             </Col>
             <Col span={19}>
             </Col>
