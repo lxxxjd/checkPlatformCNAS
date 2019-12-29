@@ -164,6 +164,12 @@ export default [
             component: './MainReport/DetailForEnturstment',
             hideInMenu: 'true',//添加页不需要在menu上显示
           },
+          {
+            path: '/MainReport/AbilityAnalysis',
+            name: 'AbilityAnalysis',
+            component: './MainReport/AbilityAnalysis',
+            hideInMenu: 'true',//添加页不需要在menu上显示
+          },
         ],
       },
 

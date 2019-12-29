@@ -57,6 +57,10 @@ export async function getOssPdf(params) {
   return request(`/api/cert_report/get_pdf?osspath=${params.osspath}`);
 }
 
+export async function getAllCNASCheckDetail(params) {
+  return request(`/api/CNASCheckDetail/getAllCNASCheckDetail?certcode=${params.certcode}`);
+}
+
 export async function getManRecord(params) {
   return request(`/api/recordman/getRecord`,{
     method: 'POST',
