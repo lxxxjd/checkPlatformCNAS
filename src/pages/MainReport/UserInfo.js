@@ -372,7 +372,7 @@ class UserInfo extends PureComponent {
 	 				<Form.Item label="用户名">
 						<span className="ant-form-text">{user.username}</span>
 			        </Form.Item>
-			        <Form.Item label='隶属海关：'>
+			        <Form.Item label='公司：'>
 		                {getFieldDecorator('company', {
 		                  rules: [
 		                    {
