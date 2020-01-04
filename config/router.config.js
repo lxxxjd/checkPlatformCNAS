@@ -40,7 +40,7 @@ export default [
     Routes: ['src/pages/Authorized'],
     routes: [
       // Entrustment
-      { path: '/', redirect: '/Company/PreCompany',authority: ['admin', 'user']},
+      { path: '/', redirect: '/Cargo/CNASOne',authority: ['admin', 'user']},
 
 
       {
@@ -168,6 +168,12 @@ export default [
             path: '/MainReport/AbilityAnalysis',
             name: 'AbilityAnalysis',
             component: './MainReport/AbilityAnalysis',
+            hideInMenu: 'true',//添加页不需要在menu上显示
+          },
+          {
+            path: '/MainReport/UserInfo',
+            name: 'UserInfo',
+            component: './MainReport/UserInfo',
             hideInMenu: 'true',//添加页不需要在menu上显示
           },
         ],
