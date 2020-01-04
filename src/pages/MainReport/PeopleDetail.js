@@ -78,8 +78,8 @@ class PeopleDetail extends PureComponent {
       }</span>
     },
     {
-      title: '上传人',
-      dataIndex: 'username',
+      title: '文件类型',
+      dataIndex: 'filetype',
     },
     {
       title: '操作',
@@ -107,7 +107,7 @@ class PeopleDetail extends PureComponent {
             description:response.data,
           });
         }else{
-          // const url = response.data;
+          const url = response.data;
           // this.setState({url:url});
           window.open(url);
         }
@@ -155,7 +155,7 @@ class PeopleDetail extends PureComponent {
     dispatch({
       type: 'main/getManRecord',
       payload: {
-        certcode : certcode ,
+        certCode : certcode ,
         nameC : text.inspman,
       },
       callback:response =>{

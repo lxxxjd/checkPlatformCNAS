@@ -1,6 +1,6 @@
 import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport, 
   getRecord, getUserByCertCodeAndName, getInstrumentByReportno, getInstrumentByKeyno,
-  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo, getManRecord, getInstrumentRecord} from '@/services/Main';
+  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo, getManRecord, getInstrumentRecord, getAllCNASCheckDetail} from '@/services/Main';
 
 
 export default {
@@ -21,6 +21,10 @@ export default {
   effects: {
     *getAllMan({ payload,callback }, { call, put }) {
       const response = yield call(getAllMan, payload);
+      if (callback) callback(response);
+    },
+    *getAllCNASCheckDetail({ payload,callback }, { call, put }) {
+      const response = yield call(getAllCNASCheckDetail, payload);
       if (callback) callback(response);
     },
     *getManRecord({ payload,callback }, { call, put }) {

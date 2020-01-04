@@ -44,7 +44,15 @@ export async function addCnasuser(params) {
   });
 }
 
-
+export async function updateCnasuser(params) {
+  return request(`/api/cnasuser/updateCnasuser`,{
+    method: 'POST',
+    data: {
+      ...params,
+      method: 'post',
+    },
+  });
+}
 
 
 

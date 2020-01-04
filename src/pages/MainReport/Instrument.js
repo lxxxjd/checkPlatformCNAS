@@ -118,10 +118,6 @@ class Instrument extends PureComponent {
       }</span>
     },
     {
-      title: '上传人',
-      dataIndex: 'username',
-    },
-    {
       title: '操作',
       render: (text, record) => (
         // 能力分析 人员 仪器设备 检查记录 样品清单 测试报告 证稿证书 委托详情
@@ -164,7 +160,7 @@ class Instrument extends PureComponent {
             description:response.data,
           });
         }else{
-          // const url = response.data;
+          const url = response.data;
           // this.setState({url:url});
           window.open(url);
         }
@@ -195,7 +191,7 @@ class Instrument extends PureComponent {
     dispatch({
       type: 'main/getInstrumentRecord',
       payload: {
-        certcode : certcode ,
+        certCode : certcode ,
         diviceName : text.divicename,
       },
       callback:response =>{

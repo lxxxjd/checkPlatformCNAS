@@ -38,6 +38,7 @@ export default {
   'menu.MainReport.TestRecord':'测试报告',
   'menu.MainReport.CertFile':'证稿证书',
   'menu.MainReport.DetailForEnturstment':'委托详情',
+  'menu.MainReport.UserInfo':'个人信息',
 
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',

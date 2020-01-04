@@ -42,7 +42,6 @@ export default [
       // Entrustment
       { path: '/', redirect: '/MainReport/MainQuery',authority: ['admin', 'user']},
 
-
       {
         path: '/Cargo',
         icon: 'profile',
@@ -162,6 +161,18 @@ export default [
             path: '/MainReport/DetailForEnturstment',
             name: 'DetailForEnturstment',
             component: './MainReport/DetailForEnturstment',
+            hideInMenu: 'true',//添加页不需要在menu上显示
+          },
+          {
+            path: '/MainReport/AbilityAnalysis',
+            name: 'AbilityAnalysis',
+            component: './MainReport/AbilityAnalysis',
+            hideInMenu: 'true',//添加页不需要在menu上显示
+          },
+          {
+            path: '/MainReport/UserInfo',
+            name: 'UserInfo',
+            component: './MainReport/UserInfo',
             hideInMenu: 'true',//添加页不需要在menu上显示
           },
         ],

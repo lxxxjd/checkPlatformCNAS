@@ -142,7 +142,7 @@ class MainQuery extends PureComponent {
       render: (text, record) => (
         // 能力分析 人员 仪器设备 检查记录 样品清单 测试报告 证稿证书 委托详情
         <Fragment>
-          <a onClick={() => this.previewItem(text, record)}>能力分析</a>
+          <a onClick={() => this.abilityItem(text, record)}>能力分析</a>
           &nbsp;&nbsp;
           <a onClick={() => this.peopleItem(text, record)}>人员详情</a>
           &nbsp;&nbsp;
@@ -179,6 +179,13 @@ class MainQuery extends PureComponent {
       callback: (response) => {
           this.state.mainResult = response;
       }
+    });
+  };
+
+  abilityItem = text => {
+    sessionStorage.setItem('certcode',text.certcode);
+    router.push({
+      pathname:'/MainReport/AbilityAnalysis',
     });
   };
 
@@ -333,13 +340,15 @@ class MainQuery extends PureComponent {
               colon={false}
             >
               {getFieldDecorator('kind', {
-                initialValue:"customsNo",
+                initialValue:"reportno",
                 rules: [{  message: '选择字段' }],
               })(
                 <Select placeholder="选择字段">
                   <Option value="reportno"> 委托编号</Option>
                   <Option value="shipname">船名标识</Option>
-                  <Option value="customsNo">报关号</Option>
+                  <Option value="cargoname">检查品名</Option>
+                  <Option value="inspway">检验项目</Option>
+                  <Option value="applicant">检验机构</Option>
                 </Select>
               )}
             </Form.Item>

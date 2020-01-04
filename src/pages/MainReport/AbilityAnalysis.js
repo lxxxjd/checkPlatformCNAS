@@ -11,7 +11,8 @@ import {
   Input,
   Button,
   Select,
-  Table, message, Modal, DatePicker,Typography, Icon
+  Table, message, Modal, DatePicker,Typography, Icon,
+  Descriptions
 } from 'antd';
 
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
@@ -26,22 +27,19 @@ const { Title} = Typography;
 
 
 
-@connect(({ company, loading }) => ({
-  company,
-  loading: loading.models.company,
+@connect(({ main, loading }) => ({
+  main,
+  loading: loading.models.main,
 }))
 @Form.create()
-class CompanyDetail extends PureComponent {
+class AbilityAnalysis extends PureComponent {
   state = {
-    modalVisible: false,
-    addModalVisible:false,
-    modalInfo :{},
-    dataSource:[],
+    visible:false,
+    url:"",
+    list:[]
   };
 
-
   columns = [
-
     {
       title: '检查领域',
       dataIndex: 'checkName',
@@ -50,19 +48,19 @@ class CompanyDetail extends PureComponent {
       title: '检查项目',
       dataIndex: 'checkProject',
       render: (text, record) => {
-        if(typeof(text) === undefined || text === null){
-          return;
-        }
         let  contentStr = [];
+        if(text===undefined || text ===null ||text ===""){
+          return null;
+        }
         contentStr = text.split("|");
         if (contentStr.length < 2) {
           return text;
         }
         let result = null;
-        const br = <br></br>;
+        const br = <br />;
         for( let  j = 0 ; j < contentStr.length ; j ++){
           if(j===0){
-             result=contentStr[j];
+            result=contentStr[j];
           }else{
             result=<span>{result}{br}{contentStr[j]}</span>;
           }
@@ -78,19 +76,19 @@ class CompanyDetail extends PureComponent {
       title: '检验标准',
       dataIndex: 'standard',
       render: (text, record) => {
-        if(typeof(text) === undefined || text === null){
-          return;
-        }
         let  contentStr = [];
+        if(text===undefined || text ===null ||text ===""){
+          return null;
+        }
         contentStr = text.split("|");
         if (contentStr.length < 2) {
           return text;
         }
         let result = null;
-        const br = <br></br>;
+        const br = <br />;
         for( let  j = 0 ; j < contentStr.length ; j ++){
           if(j===0){
-             result=contentStr[j];
+            result=contentStr[j];
           }else{
             result=<span>{result}{br}{contentStr[j]}</span>;
           }
@@ -102,19 +100,19 @@ class CompanyDetail extends PureComponent {
       title: '检验员名单',
       dataIndex: 'checkman',
       render: (text, record) => {
-        if(typeof(text) === undefined || text === null){
-          return;
-        }
         let  contentStr = [];
+        if(text===undefined || text ===null ||text ===""){
+          return null;
+        }
         contentStr = text.split("|");
         if (contentStr.length < 2) {
           return text;
         }
         let result = null;
-        const br = <br></br>;
+        const br = <br />;
         for( let  j = 0 ; j < contentStr.length ; j ++){
           if(j===0){
-             result=contentStr[j];
+            result=contentStr[j];
           }else{
             result=<span>{result}{br}{contentStr[j]}</span>;
           }
@@ -123,19 +121,52 @@ class CompanyDetail extends PureComponent {
       },
     },
     {
-      title: '授权签字人',
+      title: '状态',
+      dataIndex: 'manStatus',
+    },
+    {
+      title: '授权人员',
       dataIndex: 'auther',
+      render: (text, record) => {
+        let  contentStr = [];
+        if(text===undefined || text ===null ||text ===""){
+          return null;
+        }
+        contentStr = text.split("|");
+        if (contentStr.length < 2) {
+          return text;
+        }
+        let result = null;
+        const br = <br />;
+        for( let  j = 0 ; j < contentStr.length ; j ++){
+          if(j===0){
+            result=contentStr[j];
+          }else{
+            result=<span>{result}{br}{contentStr[j]}</span>;
+          }
+        }
+        return <div>{result}</div>;
+      },
+    },
+    {
+      title: '状态',
+      dataIndex: 'autherStatus',
     },
   ];
 
   componentDidMount() {
-    const { dispatch } = this.props;
     const certcode = sessionStorage.getItem('certcode');
+    const { dispatch } = this.props;
     dispatch({
-      type: 'company/getAllCNASCheckDetail',
+      type: 'main/getAllCNASCheckDetail',
       payload: {
-        certcode,
+        certcode
       },
+      callback:response =>{
+        if (response.code === 200) {
+          this.setState({list:response.data});
+        }
+      }
     });
   }
 
@@ -145,17 +176,17 @@ class CompanyDetail extends PureComponent {
 
   render() {
     const {
-      company:{CNASCheckDetail},
+      main:{recordData},
       loading,
       dispatch,
     } = this.props;
-
+    const { list } = this.state;
     return (
       <PageHeaderWrapper>
         <Card bordered={false} size="middle">
           <Row gutter={16}>
             <Col span={3}>
-              <Title level={3}>公司能力</Title>
+              <Title level={3}>能力分析</Title>
             </Col>
             <Col span={19}>
             </Col>
@@ -169,7 +200,7 @@ class CompanyDetail extends PureComponent {
             <Table
               size="middle"
               loading={loading}
-              dataSource={CNASCheckDetail}
+              dataSource={list}
               columns={this.columns}
               rowKey="keyno"
               pagination={{showQuickJumper:true,showSizeChanger:true}}
@@ -181,4 +212,4 @@ class CompanyDetail extends PureComponent {
   }
 }
 
-export default CompanyDetail;
+export default AbilityAnalysis;
