@@ -42,7 +42,16 @@ class CertFile extends PureComponent {
   columns = [
     {
       title: '证书名称',
-      dataIndex: 'recordname',
+      dataIndex: 'name',
+      render: val => {
+        // 取文件名
+        const pattern = /\.{1}[a-z]{1,}$/;
+        if (pattern.exec(val) !== null) {
+          return <span>{val.slice(0, pattern.exec(val).index)}</span>;
+        }
+        return <span>{val}</span>;
+
+      }
     },
     {
       title: '签署/上传日期',
@@ -53,11 +62,11 @@ class CertFile extends PureComponent {
     },
     {
       title: '签署人',
-      dataIndex: 'creator',
+      dataIndex: 'author',
     },
     {
       title: '状态',
-      dataIndex: 'creator',
+      dataIndex: 'status',
     },
     {
       title: '操作',
@@ -89,15 +98,15 @@ class CertFile extends PureComponent {
     const { dispatch } = this.props;
     const reportno = sessionStorage.getItem('reportno');
     var path = "";
-    if (text.status === "已拟制") {   
+    if (text.status === "已拟制") { 
       path = text.pdfeditorpath; 
-    }else if(text.status === "已复核"){   
+    }else if(text.status === "已复核"){ 
       path = text.pdfpath; 
-    }else if(text.status === "已缮制"){   
+    }else if(text.status === "已缮制"){ 
       path = text.titlepdfpath; 
-    }else if(text.status === "已签署" || text.status === "已发布"){   
+    }else if(text.status === "已签署" || text.status === "已发布"){ 
       path = text.certpdfpath; 
-    }else if (text.status === "已作废"){   
+    }else if (text.status === "已作废"){ 
       path = text.abandonpdfpath;
     }
     dispatch({
@@ -160,7 +169,7 @@ class CertFile extends PureComponent {
             />
           </div>
         </Card>
-        <Modal           
+        <Modal
           title="文件"
           visible={visible}
           onOk={this.handleCancel}
