@@ -83,7 +83,8 @@ class TestRecord extends PureComponent {
       type: 'main/getRecord',
       payload:{
         reportno,
-        recordname:text.recordname
+        recordname:text.recordname,
+        source:"测试报告",
       },
       callback:(response) =>{
         if(response.code === 400){
@@ -141,7 +142,7 @@ class TestRecord extends PureComponent {
             />
           </div>
         </Card>
-        <Modal           
+        <Modal
           title="文件"
           visible={visible}
           onOk={this.handleCancel}
