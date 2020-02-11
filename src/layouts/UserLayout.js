@@ -62,7 +62,7 @@ class UserLayout extends Component {
             <div className={styles.top}>
               <div className={styles.header}>
                 <Link to="/user/login">
-                  <span className={styles.title}>水木梁清</span>
+                  <span className={styles.title}>CNAS检验检测抽查系统</span>
                 </Link>
               </div>
               <div style={{marginTop:10}}>
