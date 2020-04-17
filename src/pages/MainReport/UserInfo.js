@@ -71,7 +71,7 @@ class UserInfo extends PureComponent {
 	    	dispatch ,
 	    	form
 	    } = this.props;
-	    const user = JSON.parse(localStorage.getItem("userinfo"));
+	    const user = JSON.parse(localStorage.getItem("cnas_userinfo"));
 	    this.setState({user});
 	    form.setFieldsValue({
 			'company':user.company,
@@ -86,7 +86,7 @@ class UserInfo extends PureComponent {
 	      dispatch,
 	    } = this.props;
 	    const {validateFieldsAndScroll} = form;
-	    let user = JSON.parse(localStorage.getItem("userinfo"));
+	    let user = JSON.parse(localStorage.getItem("cnas_userinfo"));
 	    validateFieldsAndScroll((error, values) => {
 	    	console.log(error);
 	      if (!error) {
@@ -104,7 +104,7 @@ class UserInfo extends PureComponent {
 	              notification.open({
 	                message: '修改成功',
 	              });
-	              localStorage.setItem('userinfo',JSON.stringify(user));
+	              localStorage.setItem('cnas_userinfo',JSON.stringify(user));
 	              this.componentDidMount();
 	            } else {
 	              notification.open({
@@ -117,14 +117,14 @@ class UserInfo extends PureComponent {
 	      }
 	    });
 	};
-	
+
 	modifyPassword = () =>{
 		const {
 	      form,
 	      dispatch,
 	    } = this.props;
 	    const {validateFieldsAndScroll} = form;
-	    let user = JSON.parse(localStorage.getItem("userinfo"));
+	    let user = JSON.parse(localStorage.getItem("cnas_userinfo"));
 	    validateFieldsAndScroll((error, values) => {
 	      if (!error) {
 	        // submit the values
@@ -140,7 +140,7 @@ class UserInfo extends PureComponent {
 	                message: '修改成功',
 	              });
 	              this.setState({passwordVisible:false});
-	              localStorage.setItem('userinfo',JSON.stringify(user));
+	              localStorage.setItem('cnas_userinfo',JSON.stringify(user));
 	              this.componentDidMount();
 	            } else {
 	              notification.open({
@@ -160,7 +160,7 @@ class UserInfo extends PureComponent {
 	      dispatch,
 	    } = this.props;
 	    const {validateFieldsAndScroll} = form;
-	    let user = JSON.parse(localStorage.getItem("userinfo"));
+	    let user = JSON.parse(localStorage.getItem("cnas_userinfo"));
 	    validateFieldsAndScroll((error, values) => {
 	      if (!error) {
 	        // submit the values
@@ -184,7 +184,7 @@ class UserInfo extends PureComponent {
 			                message: '修改成功',
 			              });
 			              this.setState({phoneVisible:false});
-			              localStorage.setItem('userinfo',JSON.stringify(user));
+			              localStorage.setItem('cnas_userinfo',JSON.stringify(user));
 			              this.componentDidMount();
 			            } else {
 			              notification.open({

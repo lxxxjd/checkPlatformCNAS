@@ -60,7 +60,7 @@ class DetailForEnturstment extends Component {
   componentWillMount() {
     const reportnNo = sessionStorage.getItem("reportno");
     const { dispatch } = this.props;
-    const user = JSON.parse(localStorage.getItem("userinfo"));
+    const user = JSON.parse(localStorage.getItem("cnas_userinfo"));
     dispatch({
       type: 'main/getReport',
       payload: reportnNo,
