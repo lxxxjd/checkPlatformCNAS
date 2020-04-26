@@ -1,6 +1,6 @@
-import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport, 
+import { getAllMan, getReportByCustoms, getAllReadRecords, getRecordInfo, queryReport,
   getRecord, getUserByCertCodeAndName, getInstrumentByReportno, getInstrumentByKeyno,
-  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo, getManRecord, getInstrumentRecord, getAllCNASCheckDetail} from '@/services/Main';
+  selectSampleByReportno, getCertFiles, getOssPdf, getCnasInfo, getManRecord, getInstrumentRecord, getAllCNASCheckDetail,getReportByCNAS} from '@/services/Main';
 
 
 export default {
@@ -106,6 +106,12 @@ export default {
       });
       if (callback) callback(response.data);
     },
+
+    *getReportByCNAS({ payload,callback }, { call, put }) {
+      const response = yield call(getReportByCNAS, payload);
+      if (callback) callback(response.data);
+    },
+
   },
 
   reducers: {

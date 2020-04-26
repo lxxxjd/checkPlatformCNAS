@@ -174,7 +174,7 @@ class MainQuery extends PureComponent {
     const params = {
     };
     dispatch({
-      type: 'main/getReportByCustoms',
+      type: 'main/getReportByCNAS',
       payload: params,
       callback: (response) => {
           this.state.mainResult = response;
@@ -184,52 +184,38 @@ class MainQuery extends PureComponent {
 
   abilityItem = text => {
     sessionStorage.setItem('certcode',text.certcode);
-    router.push({
-      pathname:'/MainReport/AbilityAnalysis',
-    });
+    window.open("/MainReport/AbilityAnalysis");
   };
 
   previewItem = text => {
     sessionStorage.setItem('reportno',text.reportno);
-    router.push({
-      pathname:'/MainReport/DetailForEnturstment',
-    });
+    window.open("/MainReport/DetailForEnturstment");
   };
 
   testRecordItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    router.push({
-      pathname:'/MainReport/TestRecord',
-    });
+    window.open("/MainReport/TestRecord");
   };
 
   certItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    router.push({
-      pathname:'/MainReport/CertFile',
-    });
+    window.open("/MainReport/CertFile");
   };
 
   sampleItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    router.push({
-      pathname:'/MainReport/Sample',
-    });
+    window.open("/MainReport/Sample");
   };
 
   recordItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    router.push({
-      pathname:'/MainReport/Record',
-    });
+    window.open("/MainReport/Record");
   };
 
   instrumentItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
     sessionStorage.setItem('certcode',text.certcode);
-    router.push({
-      pathname:'/MainReport/Instrument',
-    });
+    window.open("/MainReport/Instrument");
   };
 
   handleFormReset = () => {
@@ -243,9 +229,7 @@ class MainQuery extends PureComponent {
   peopleItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
     sessionStorage.setItem('certcode',text.certcode);
-    router.push({
-      pathname:'/MainReport/PeopleDetail',
-    });
+    window.open("/MainReport/PeopleDetail");
   };
 
 
@@ -287,7 +271,7 @@ class MainQuery extends PureComponent {
         conditions:mconditions,
       };
       dispatch({
-        type: 'main/getReportByCustoms',
+        type: 'main/getReportByCNAS',
         payload: params,
         callback: (response) => {
           this.state.mainResult = response;
@@ -348,7 +332,7 @@ class MainQuery extends PureComponent {
                   <Option value="shipname">船名标识</Option>
                   <Option value="cargoname">检查品名</Option>
                   <Option value="inspway">检验项目</Option>
-                  <Option value="applicant">检验机构</Option>
+                  <Option value="company.namec">检验机构</Option>
                 </Select>
               )}
             </Form.Item>

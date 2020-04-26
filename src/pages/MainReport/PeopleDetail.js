@@ -67,7 +67,7 @@ class PeopleDetail extends PureComponent {
 
   columns1 = [
     {
-      title: '证书名称',
+      title: '文件名称',
       dataIndex: 'recordname',
     },
     {
@@ -172,7 +172,7 @@ class PeopleDetail extends PureComponent {
     });
   };
   back = () =>{
-    this.props.history.goBack();
+    window.close();
   };
   handleCancel = () => {
     this.setState({
@@ -196,7 +196,7 @@ class PeopleDetail extends PureComponent {
             </Col>
             <Col span={2}>
               <Button type="primary" style={{ marginLeft: 8 ,paddingLeft:0,paddingRight:15}} onClick={this.back}>
-                <Icon type="left" />返回
+                <Icon style={{paddingLeft:5}} type="close" />关闭
               </Button>
             </Col>
           </Row>
@@ -211,7 +211,7 @@ class PeopleDetail extends PureComponent {
             />
           </div>
         </Card>
-        <Modal           
+        <Modal
           title="人员"
           visible={peopleVisible}
           onOk={this.handleCancel}

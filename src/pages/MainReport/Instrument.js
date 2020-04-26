@@ -48,7 +48,7 @@ class Instrument extends PureComponent {
 
     {
       title: '设备编号',
-      dataIndex: 'diviceId',
+      dataIndex: 'diviceid',
     },
     {
       title: '检验项目',
@@ -208,7 +208,7 @@ class Instrument extends PureComponent {
     });
   };
   back = () =>{
-    this.props.history.goBack();
+    window.close();
   };
   handleCancel = () => {
     this.setState({
@@ -221,6 +221,14 @@ class Instrument extends PureComponent {
       dispatch,
     } = this.props;
     const { instruments ,instrument, peopleVisible, record} = this.state;
+    // 处理操作时间
+    const handleDate = (val) => {
+      if(val!==undefined && val!==null){
+        return  <span>{ moment(val).format('YYYY-MM-DD')}</span>;
+      }
+      return null;
+    };
+
     return (
       <PageHeaderWrapper>
         <Card bordered={false} size="middle">
@@ -232,7 +240,7 @@ class Instrument extends PureComponent {
             </Col>
             <Col span={2}>
               <Button type="primary" style={{ marginLeft: 8 ,paddingLeft:0,paddingRight:15}} onClick={this.back}>
-                <Icon type="left" />返回
+                <Icon style={{paddingLeft:5}} type="close" />关闭
               </Button>
             </Col>
           </Row>
@@ -247,7 +255,7 @@ class Instrument extends PureComponent {
             />
           </div>
         </Card>
-        <Modal           
+        <Modal
           title="人员"
           visible={peopleVisible}
           onOk={this.handleCancel}
@@ -255,20 +263,21 @@ class Instrument extends PureComponent {
           width={1000}
         >
           <Descriptions size="large" title="业务信息" style={{ marginBottom: 32 }} bordered>
-            <Descriptions.Item label="仪器编号">{instrument.diviceId}</Descriptions.Item>
-            <Descriptions.Item label="仪器名称">{instrument.divicename}</Descriptions.Item>
-、            <Descriptions.Item label="规格/型号">{instrument.specifications}</Descriptions.Item>
-            <Descriptions.Item label="国别/生产厂">{instrument.idcard}</Descriptions.Item>
-            <Descriptions.Item label="购置日期">{moment(instrument.buydate).format('YYYY-MM-DD')}</Descriptions.Item>
-            <Descriptions.Item label="验收日期">{moment(instrument.acceptdate).format('YYYY-MM-DD')}</Descriptions.Item>
-            <Descriptions.Item label="验收组人员">{instrument.major}</Descriptions.Item>
-            <Descriptions.Item label="使用日期">{moment(instrument.usedate).format('YYYY-MM-DD')}</Descriptions.Item>
+            <Descriptions.Item label="设备编号">{instrument.diviceid}</Descriptions.Item>
+            <Descriptions.Item label="设备名称">{instrument.divicename}</Descriptions.Item>
+            <Descriptions.Item label="规格/型号">{instrument.specifications}</Descriptions.Item>
+            <Descriptions.Item label="国别/生产厂">{instrument.manufacturer}</Descriptions.Item>
+            <Descriptions.Item label="购置日期">{handleDate(instrument.buydate)}</Descriptions.Item>
+            <Descriptions.Item label="验收日期">{handleDate(instrument.acceptdate)}</Descriptions.Item>
+            <Descriptions.Item label="验收人员">{instrument.acceptman}</Descriptions.Item>
+            <Descriptions.Item label="使用日期">{handleDate(instrument.usedate)}</Descriptions.Item>
             <Descriptions.Item label="使用部门">{instrument.usesection}</Descriptions.Item>
-            <Descriptions.Item label="保管人">{instrument.manufacturer}</Descriptions.Item>
-            <Descriptions.Item label="价值（万元）" >{instrument.value}</Descriptions.Item>
-            <Descriptions.Item label="检定日期">{moment(instrument.checkdate).format('YYYY-MM-DD')}</Descriptions.Item>
-            <Descriptions.Item label="检定周期">{instrument.checkcycle}</Descriptions.Item>
+            <Descriptions.Item label="保管人">{instrument.custodian}</Descriptions.Item>
+            <Descriptions.Item label="价值">{instrument.value}</Descriptions.Item>
+            <Descriptions.Item label="检定日期">{handleDate(instrument.checkdate)}</Descriptions.Item>
+            <Descriptions.Item label="检定周期（月）">{instrument.checkcycle}</Descriptions.Item>
             <Descriptions.Item label="检定单位">{instrument.checkCompany}</Descriptions.Item>
+            <Descriptions.Item label="报废日期">{handleDate(instrument.scrapdate)}</Descriptions.Item>
             <Descriptions.Item label="状态">{instrument.status}</Descriptions.Item>
           </Descriptions>
           <Table

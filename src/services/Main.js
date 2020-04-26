@@ -23,7 +23,6 @@ export async function getRecord(params) {
   return request(`/api/recordinfo/get_record?recordname=${params.recordname}&reportno=${params.reportno}&source=${params.source}`);
 }
 
-// post请求 注意 ` 这个符号 不是这种 ’号
 export async function getReportByCustoms(params) {
   return request(`/api/report/getReportByCustoms`,{
     method: 'POST',
@@ -32,6 +31,17 @@ export async function getReportByCustoms(params) {
     },
   });
 }
+
+export async function getReportByCNAS(params) {
+  return request(`/api/report/getReportByCNAS`,{
+    method: 'POST',
+    data: {
+      ...params,
+    },
+  });
+}
+
+
 
 export async function getUserByCertCodeAndName(params) {
   return request(`/api/user/getUserByCertCodeAndName?certCode=${params.certcode}&nameC=${params.nameC}`);

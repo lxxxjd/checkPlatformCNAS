@@ -53,17 +53,10 @@ class AbilityAnalysis extends PureComponent {
           return null;
         }
         contentStr = text.split("|");
-        if (contentStr.length < 2) {
-          return text;
-        }
         let result = null;
         const br = <br />;
         for( let  j = 0 ; j < contentStr.length ; j ++){
-          if(j===0){
-            result=contentStr[j];
-          }else{
-            result=<span>{result}{br}{contentStr[j]}</span>;
-          }
+          result=<span>{result}{br}{contentStr[j]}</span>;
         }
         return <div>{result}</div>;
       },
@@ -81,9 +74,6 @@ class AbilityAnalysis extends PureComponent {
           return null;
         }
         contentStr = text.split("|");
-        if (contentStr.length < 2) {
-          return text;
-        }
         let result = null;
         const br = <br />;
         for( let  j = 0 ; j < contentStr.length ; j ++){
@@ -105,7 +95,7 @@ class AbilityAnalysis extends PureComponent {
           return null;
         }
         contentStr = text.split("|");
-        if (contentStr.length < 2) {
+        if (contentStr.length < 1) {
           return text;
         }
         let result = null;
@@ -171,7 +161,7 @@ class AbilityAnalysis extends PureComponent {
   }
 
   back = () =>{
-    this.props.history.goBack();
+    window.close();
   };
 
   render() {
@@ -192,7 +182,7 @@ class AbilityAnalysis extends PureComponent {
             </Col>
             <Col span={2}>
               <Button type="primary" style={{ marginLeft: 8 ,paddingLeft:0,paddingRight:15}} onClick={this.back}>
-                <Icon type="left" />返回
+                <Icon style={{paddingLeft:5}} type="close" />关闭
               </Button>
             </Col>
           </Row>

@@ -54,15 +54,15 @@ class CertFile extends PureComponent {
       }
     },
     {
-      title: '签署/上传日期',
-      dataIndex: 'recorddate',
+      title: '签署日期',
+      dataIndex: 'authordate',
       render: val => <span>{
         moment(val).format('YYYY-MM-DD')
       }</span>
     },
     {
       title: '签署人',
-      dataIndex: 'author',
+      dataIndex: 'authorNameC',
     },
     {
       title: '状态',
@@ -94,6 +94,7 @@ class CertFile extends PureComponent {
       }
     });
   }
+
   previewItem = text => {
     const { dispatch } = this.props;
     const reportno = sessionStorage.getItem('reportno');
@@ -129,14 +130,17 @@ class CertFile extends PureComponent {
     });
     this.setState({visible:true});
   };
+
   back = () =>{
-    this.props.history.goBack();
+    window.close();
   };
+
   handleCancel = () => {
     this.setState({
       visible: false,
     });
   };
+
   render() {
     const {
       loading,
@@ -154,7 +158,7 @@ class CertFile extends PureComponent {
             </Col>
             <Col span={2}>
               <Button type="primary" style={{ marginLeft: 8 ,paddingLeft:0,paddingRight:15}} onClick={this.back}>
-                <Icon type="left" />返回
+                <Icon style={{paddingLeft:5}} type="close" />关闭
               </Button>
             </Col>
           </Row>

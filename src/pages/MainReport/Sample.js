@@ -90,7 +90,7 @@ class Sample extends PureComponent {
   }
 
   back = () =>{
-    this.props.history.goBack();
+    window.close();
   };
 
   render() {
@@ -111,7 +111,7 @@ class Sample extends PureComponent {
             </Col>
             <Col span={2}>
               <Button type="primary" style={{ marginLeft: 8 ,paddingLeft:0,paddingRight:15}} onClick={this.back}>
-                <Icon type="left" />返回
+                <Icon style={{paddingLeft:5}} type="close" />关闭
               </Button>
             </Col>
           </Row>
