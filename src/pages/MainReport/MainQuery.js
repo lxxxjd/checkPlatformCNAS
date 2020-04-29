@@ -184,38 +184,38 @@ class MainQuery extends PureComponent {
 
   abilityItem = text => {
     sessionStorage.setItem('certcode',text.certcode);
-    window.open("/MainReport/AbilityAnalysis");
+    window.open("/checkPlatformCNAS/MainReport/AbilityAnalysis");
   };
 
   previewItem = text => {
     sessionStorage.setItem('reportno',text.reportno);
-    window.open("/MainReport/DetailForEnturstment");
+    window.open("/checkPlatformCNAS/MainReport/DetailForEnturstment");
   };
 
   testRecordItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    window.open("/MainReport/TestRecord");
+    window.open("/checkPlatformCNAS/MainReport/TestRecord");
   };
 
   certItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    window.open("/MainReport/CertFile");
+    window.open("/checkPlatformCNAS/MainReport/CertFile");
   };
 
   sampleItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    window.open("/MainReport/Sample");
+    window.open("/checkPlatformCNAS/MainReport/Sample");
   };
 
   recordItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
-    window.open("/MainReport/Record");
+    window.open("/checkPlatformCNAS/MainReport/Record");
   };
 
   instrumentItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
     sessionStorage.setItem('certcode',text.certcode);
-    window.open("/MainReport/Instrument");
+    window.open("/checkPlatformCNAS/MainReport/Instrument");
   };
 
   handleFormReset = () => {
@@ -229,7 +229,7 @@ class MainQuery extends PureComponent {
   peopleItem = text =>{
     sessionStorage.setItem('reportno',text.reportno);
     sessionStorage.setItem('certcode',text.certcode);
-    window.open("/MainReport/PeopleDetail");
+    window.open("/checkPlatformCNAS/MainReport/PeopleDetail");
   };
 
 
